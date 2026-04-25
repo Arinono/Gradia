@@ -5,35 +5,6 @@ template $GradiaImageSidebar: Adw.Bin {
   child: Adw.ToolbarView {
     top-bar-style: flat;
 
-    [top]
-    Adw.HeaderBar {
-      centering-policy: loose;
-      show-end-title-buttons: false;
-      show-start-title-buttons: true;
-
-      [start]
-      Gtk.Button open_image_button {
-        icon-name: "document-open-symbolic";
-        tooltip-text: _("Open Image");
-        action-name: "win.open";
-      }
-
-      [start]
-      Gtk.Button screenshot_button {
-        icon-name: "screenshooter-symbolic";
-        tooltip-text: _("Take a Screenshot");
-        action-name: "win.screenshot";
-      }
-
-      [end]
-      Gtk.MenuButton about_menu_button {
-        icon-name: "open-menu-symbolic";
-        tooltip-text: _("Main Menu");
-        menu-model: app_menu;
-        primary: true;
-      }
-    }
-
     content: ScrolledWindow {
       hscrollbar-policy: never;
       child: Box {
@@ -244,39 +215,4 @@ template $GradiaImageSidebar: Adw.Bin {
   };
 }
 
-menu app_menu {
-  section {
-    item {
-      label: _("_Source Snippets");
-      action: "win.create-source-image";
-    }
-
-    item {
-      label: _("_Delete Taken Screenshot(s)");
-      action: "win.delete-screenshots";
-    }
-  }
-
-  section {
-    item {
-      label: _("_Preferences");
-      action: "win.preferences";
-    }
-
-    item {
-      label: _("_Keyboard Shortcuts");
-      action: "win.shortcuts";
-    }
-
-    item {
-      label: _("D_onate to Gradia");
-      action: "win.donate";
-    }
-
-    item {
-      label: _("_About Gradia");
-      action: "win.about";
-    }
-  }
-}
 

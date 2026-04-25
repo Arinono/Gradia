@@ -63,9 +63,6 @@ class ImageStack(Adw.Bin):
     zoom_in_button: Gtk.Button = Gtk.Template.Child()
     reset_zoom_button: Gtk.Button = Gtk.Template.Child()
     zoom_info_revealer: Gtk.Revealer = Gtk.Template.Child()
-    sidebar_revealer: Gtk.Revealer = Gtk.Template.Child()
-    sidebar_button: Gtk.Button = Gtk.Template.Child()
-
     crop_enabled: bool = False
     crop_has_been_enabled: bool = False
 
@@ -104,7 +101,6 @@ class ImageStack(Adw.Bin):
             self._update_compact_ui()
 
     def _update_compact_ui(self) -> None:
-        self.sidebar_button.set_visible(self._compact)
         zoom_level = self.zoomable_widget.get_property("zoom-level")
         self.zoom_label.set_visible(not self._compact)
 
@@ -176,9 +172,7 @@ class ImageStack(Adw.Bin):
         self.back_button.set_reveal_child(self.crop_enabled)
         self.crop_button_revealer.set_reveal_child(not self.crop_enabled)
         self.ocr_revealer.set_reveal_child((not self.crop_enabled) and self._get_ocr_action_state())
-        self.sidebar_revealer.set_reveal_child(not self.crop_enabled)
         self.zoomable_widget.disable_zoom = self.crop_enabled
-        self.sidebar_button.set_sensitive(not self.crop_enabled)
         if not self._compact:
             self._show_sidebar(not self.crop_enabled)
         self.crop_options_revealer.set_reveal_child(self.crop_enabled)

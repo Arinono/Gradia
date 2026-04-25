@@ -7,37 +7,7 @@ template $GradiaImageStack: Adw.Bin {
   child: $DropOverlay drop_overlay {
     title: _("Drop Image Here");
 
-    child-widget: Adw.ToolbarView toolbar_view {
-      top-bar-style: flat;
-      extend-content-to-top-edge: true;
-
-      [top]
-      Adw.HeaderBar headerbar {
-        show-title: false;
-        show-start-title-buttons: false;
-
-        [start]
-        Revealer back_button {
-          transition-type: crossfade;
-
-          child: Button {
-            icon-name: "go-previous-symbolic";
-            action-name: "win.crop-back";
-            has-tooltip: true;
-            tooltip-text: _("Back");
-
-            styles [
-              "back-button",
-            ]
-          };
-        }
-
-        styles [
-          "header-osd",
-        ]
-      }
-
-      content: Gtk.Stack stack {
+    child-widget: Gtk.Stack stack {
         transition-type: crossfade;
         transition-duration: 200;
         vexpand: true;
@@ -85,22 +55,20 @@ template $GradiaImageStack: Adw.Bin {
                     "osd-box",
                   ]
 
-                  Gtk.Revealer sidebar_revealer {
+                  Gtk.Revealer back_button {
                     transition-type: slide_right;
                     transition-duration: 300;
-                    reveal-child: true;
 
-                    Gtk.Button sidebar_button {
-                      icon-name: "sidebar-show-symbolic";
-                      tooltip-text: _("Open Sidebar");
-                      action-name: "win.sidebar-shown";
-                      action-target: "true";
-                      visible: false;
+                    child: Gtk.Button {
+                      icon-name: "go-previous-symbolic";
+                      action-name: "win.crop-back";
+                      has-tooltip: true;
+                      tooltip-text: _("Back");
 
                       styles [
                         "flat",
                       ]
-                    }
+                    };
                   }
 
                   Revealer crop_button_revealer {
@@ -342,7 +310,6 @@ template $GradiaImageStack: Adw.Bin {
           };
         }
       };
-    };
   };
 }
 

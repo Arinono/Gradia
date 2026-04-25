@@ -60,6 +60,7 @@ class GradiaMainWindow(Adw.ApplicationWindow):
 
     toast_overlay: Adw.ToastOverlay = Gtk.Template.Child()
     toolbar_view: Adw.ToolbarView = Gtk.Template.Child()
+    toggle_sidebar_button: Gtk.Button = Gtk.Template.Child()
 
     welcome_page: Gtk.StackPage = Gtk.Template.Child()
 
@@ -383,6 +384,7 @@ class GradiaMainWindow(Adw.ApplicationWindow):
         self.show_close_confirmation = True
         self.image_stack.get_style_context().add_class("view")
         self.sidebar.set_visible(True)
+        self.toggle_sidebar_button.set_visible(True)
         self.toolbar_view.set_top_bar_style(Adw.ToolbarStyle.RAISED)
         self.image_stack.set_visible_child_name(self.PAGE_LOADING)
 

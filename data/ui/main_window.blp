@@ -10,6 +10,46 @@ template $GradiaMainWindow: Adw.ApplicationWindow {
     Adw.ToolbarView toolbar_view {
       top-bar-style: flat;
 
+      [top]
+      Adw.HeaderBar {
+        [start]
+        Gtk.Button toggle_sidebar_button {
+          icon-name: "open-menu-symbolic";
+          tooltip-text: _("Toggle Sidebar");
+          action-name: "win.toggle-sidebar";
+          visible: false;
+        }
+
+        [start]
+        Gtk.Button {
+          icon-name: "document-open-symbolic";
+          tooltip-text: _("Open Image");
+          action-name: "win.open";
+        }
+
+        [start]
+        Gtk.Button {
+          icon-name: "screenshooter-symbolic";
+          tooltip-text: _("Take a Screenshot");
+          action-name: "win.screenshot";
+        }
+
+        [end]
+        Gtk.MenuButton about_menu_button {
+          icon-name: "preferences-system-symbolic";
+          tooltip-text: _("Main Menu");
+          menu-model: app_menu;
+          primary: true;
+        }
+
+        [end]
+        Gtk.Button {
+          icon-name: "code-symbolic";
+          tooltip-text: _("Source Snippets");
+          action-name: "win.create-source-image";
+        }
+      }
+
       content: Gtk.Stack main_stack {
         transition-type: crossfade;
         transition-duration: 200;
@@ -46,3 +86,33 @@ template $GradiaMainWindow: Adw.ApplicationWindow {
   };
 }
 
+menu app_menu {
+  section {
+    item {
+      label: _("_Delete Taken Screenshot(s)");
+      action: "win.delete-screenshots";
+    }
+  }
+
+  section {
+    item {
+      label: _("_Preferences");
+      action: "win.preferences";
+    }
+
+    item {
+      label: _("_Keyboard Shortcuts");
+      action: "win.shortcuts";
+    }
+
+    item {
+      label: _("D_onate to Gradia");
+      action: "win.donate";
+    }
+
+    item {
+      label: _("_About Gradia");
+      action: "win.about";
+    }
+  }
+}
