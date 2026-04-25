@@ -194,7 +194,6 @@ class GradiaMainWindow(Adw.ApplicationWindow):
             on_image_options_changed=self.on_image_options_changed,
         )
 
-        self.sidebar.set_size_request(self.SIDEBAR_WIDTH, -1)
         self.sidebar.set_visible(False)
 
         self.share_button = self.sidebar.share_button
@@ -202,6 +201,9 @@ class GradiaMainWindow(Adw.ApplicationWindow):
     def _setup(self) -> None:
         self.split_view.set_sidebar(self.sidebar)
         self.split_view.set_content(self.image_bin)
+        self.split_view.set_sidebar_width_unit(Adw.LengthUnit.PX)
+        self.split_view.set_min_sidebar_width(self.SIDEBAR_WIDTH)
+        self.split_view.set_max_sidebar_width(self.SIDEBAR_WIDTH)
         self.image_stack.set_hexpand(True)
         self.sidebar.set_hexpand(False)
 
